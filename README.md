@@ -1,17 +1,8 @@
-# React-Labs-2024
+# React + Vite
 
-1. Create new repository for react homeworks with an appropriate name
-2. Create React project using Vite
-3. Remove unnecessary code
-4. Create a basic structure of your project
-5. Edit **package.json** file: add necessary information about you and your project
-6. **Render an arbitrary list of items**, run application and add **screenshot** of you rendered list to merge request
-7. Push code to your remote repository and open merge request:
-  7.1 Merge request should include:
-      - homework number
-      - what was done (description of your changes)
-      - screenshot from option 6.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Please pay attention that for each homework you shel create **separate branch**
+Currently, two official plugins are available:
 
-And good luck :) 
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
