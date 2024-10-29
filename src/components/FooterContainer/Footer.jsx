@@ -1,44 +1,67 @@
 import {
-  footerStyles,
-  footerLeftStyles,
-  footerRightStyles,
-  footerColumnStyles,
-  footerColumnListStyles,
-  footerLinkStyles,
+  footer,
+  footerContainer,
+  footerLeft,
+  footerRight,
+  footerColumn,
+  footerColumnList,
+  footerLink,
+  logo,
+  logoIcon,
+  footerColumnName,
+  footerColumnListLi,
+  footerIcon,
+  footerIconLink,
+  footerSign,
+  footerIconLinkContainer,
+  pFooterSign,
+  spanFooterSign
 } from './styles';
 
 const Footer = () => {
   return (
-    <footer style={footerStyles}>
-      <div style={footerLeftStyles}>
-        <div>Logo</div>
-        <p>Takeaway & Delivery template for small - medium businesses.</p>
+    <footer style={footer}>
+      <div style={footerContainer}>
+        <div style={footerLeft}>
+        <div style={logo}>
+          <img style={logoIcon} src="./src/assets/icons/header/logo.png" alt="Logo" />
+        </div>
+          <p>Takeaway & Delivery template for small - medium businesses.</p>
+        </div>
+        <div style={footerRight}>
+          <div style={footerColumn}>
+            <h4 style={footerColumnName}>COMPANY</h4>
+            <ul style={footerColumnList}>
+              <li style={footerColumnListLi}><a href="/" style={footerLink}>Home</a></li>
+              <li style={footerColumnListLi}><a href="/" style={footerLink}>Order</a></li>
+              <li style={footerColumnListLi}><a href="/" style={footerLink}>FAQ</a></li>
+              <li style={footerColumnListLi}><a href="/" style={footerLink}>Contact</a></li>
+            </ul>
+          </div>
+          <div style={footerColumn}>
+            <h4 style={footerColumnName}>TEMPLATE</h4>
+            <ul style={footerColumnList}>
+              <li style={footerColumnListLi}><a href="/" style={footerLink}>Style Guide</a></li>
+              <li style={footerColumnListLi}><a href="/" style={footerLink}>Changelog</a></li>
+              <li style={footerColumnListLi}><a href="/" style={footerLink}>Licence</a></li>
+              <li style={footerColumnListLi}><a href="/" style={footerLink}>Webflow University</a></li>
+            </ul>
+          </div>
+          <div style={footerColumn}>
+            <h4 style={footerColumnName}>FLOWBASE</h4>
+            <ul style={footerColumnList}>
+              <li style={footerColumnListLi}><a href="/" style={footerLink}>More Cloneables</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div style={footerRightStyles}>
-        <div style={footerColumnStyles}>
-          <h4>company</h4>
-          <ul style={footerColumnListStyles}>
-            <li><a href="/" style={footerLinkStyles}>Home</a></li>
-            <li><a href="/" style={footerLinkStyles}>Order</a></li>
-            <li><a href="/" style={footerLinkStyles}>FAQ</a></li>
-            <li><a href="/" style={footerLinkStyles}>Contact</a></li>
-          </ul>
-        </div>
-        <div style={footerColumnStyles}>
-          <h4>TEMPLATE</h4>
-          <ul style={footerColumnListStyles}>
-            <li><a href="/" style={footerLinkStyles}>Style Guide</a></li>
-            <li><a href="/" style={footerLinkStyles}>Changelog</a></li>
-            <li><a href="/" style={footerLinkStyles}>Licence</a></li>
-            <li><a href="/" style={footerLinkStyles}>Webflow University</a></li>
-          </ul>
-        </div>
-        <div style={footerColumnStyles}>
-          <h4>FLOWBASE</h4>
-          <ul style={footerColumnListStyles}>
-            <li><a href="/" style={footerLinkStyles}>More Cloneables</a></li>
-          </ul>
-        </div>
+      <div style={footerSign}>
+        <span style={spanFooterSign}>Built by<p style={pFooterSign}>Flowbase ·</p >Powered by<p style={pFooterSign}>Webflow</p></span>
+        <ul style={footerIconLinkContainer}>
+          <li style={footerIconLinkContainer}><a href="/" style={footerIconLink}><img style={footerIcon} src="./src/assets/icons/footer/inst.png" alt="inst" /></a></li>
+          <li style={footerIconLinkContainer}><a href="/" style={footerIconLink}><img style={footerIcon} src="./src/assets/icons/footer/twitter.png" alt="twitter" /></a></li>
+          <li style={footerIconLinkContainer}><a href="/" style={footerIconLink}><img style={footerIcon} src="./src/assets/icons/footer/youtube.png" alt="youtube" /></a></li>
+        </ul>
       </div>
     </footer>
   );

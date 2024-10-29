@@ -3,9 +3,9 @@ import MenuPage from './components/MenuPageContainer';
 
 function App() {
   return (
-    <div>
+    <>
       <MenuPage />
-    </div>
+    </>
   );
 }
 

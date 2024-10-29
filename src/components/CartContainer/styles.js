@@ -1,4 +1,3 @@
-// styles.js
 export const cartContainerStyles = {
   display: "flex",
   flexDirection: "column",

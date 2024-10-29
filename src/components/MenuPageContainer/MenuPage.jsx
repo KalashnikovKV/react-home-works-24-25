@@ -1,30 +1,42 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import Header from '../HeaderContainer/Header';
 import Footer from '../FooterContainer/Footer';
 import Section from '../SectionContainer/Section';
 import Cart from '../CartContainer/Cart';
-import {phoneTooltip,containerMenu,phoneTooltipHover} from './styles'
+import {
+  phoneTooltip,
+  containerMenu,
+  phoneTooltipHover,
+  menuPageButtons,
+  menuPageFilterButtons,
+  menuDescribe,
+  hMenu,
+  pMenu,
+  menuPageFilterButtonsContainer,
+} from './styles';
+import Button from '../ButtonComponent/Button';
 
 const productsData = [
-  { id: 1, image: 'https://via.placeholder.com/150', name: 'Burger Dreams', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 29.99 },
-  { id: 2, image: 'https://via.placeholder.com/150', name: 'Burger Cali', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 19.99 },
-  { id: 3, image: 'https://via.placeholder.com/150', name: 'Burger Spicy', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 39.99 },
-  { id: 4, image: 'https://via.placeholder.com/150', name: 'Burger Waldo', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 24.99 },
-  { id: 5, image: 'https://via.placeholder.com/150', name: 'Burger Bacon Buddy', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 44.99 },
-  { id: 6, image: 'https://via.placeholder.com/150', name: 'Burger Classic', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 34.99 },
+  { id: 1, image: './src/assets/images/menuPage/burgerDreams.png', name: 'Burger Dreams', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 29.99 },
+  { id: 2, image: './src/assets/images/menuPage/burgerCali.png', name: 'Burger Cali', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 19.99 },
+  { id: 3, image: './src/assets/images/menuPage/burgerSpicy.png', name: 'Burger Spicy', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 39.99 },
+  { id: 4, image: './src/assets/images/menuPage/burgerWaldo.png', name: 'Burger Waldo', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 24.99 },
+  { id: 5, image: './src/assets/images/menuPage/burgerBaconBaddy.png', name: 'Burger Bacon Buddy', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 44.99 },
+  { id: 6, image: './src/assets/images/menuPage/burgerClassic.png', name: 'Burger Classic', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 34.99 },
 ];
 
 const MenuPage = () => {
   const [selectedSection, setSelectedSection] = useState('Home');
+  const [selectedFilter, setSelectedFilter] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [isCartVisible, setIsCartVisible] = useState(false);
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   const addToCart = (product) => {
     setCartItems((prevItems) => {
-      const existingItem = prevItems.find(item => item.id === product.id);
+      const existingItem = prevItems.find((item) => item.id === product.id);
       if (existingItem) {
-        return prevItems.map(item =>
+        return prevItems.map((item) =>
           item.id === product.id ? { ...item, quantity: item.quantity + product.quantity } : item
         );
       }
@@ -33,7 +45,7 @@ const MenuPage = () => {
   };
 
   const removeFromCart = (id) => {
-    setCartItems((prevItems) => prevItems.filter(item => item.id !== id));
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
   const toggleCartVisibility = () => {
@@ -54,23 +66,39 @@ const MenuPage = () => {
       case 'Menu':
         return (
           <div style={containerMenu}>
-            <div>
-              <p>
-                Use our menu to place an order online, or{' '}
-                <span
-                  style={phoneTooltip}
-                  onMouseEnter={() => setIsTooltipVisible(true)}
-                  onMouseLeave={() => setIsTooltipVisible(false)}
-                >
-                  phone
-                  {isTooltipVisible && (
-                    <span style={phoneTooltipHover}>123-456-7890</span>
-                  )}
-                </span>{' '}
-                our store to place a pickup order. Fast and fresh food.
-              </p>
+            <div style={menuDescribe}>
+              <h1 style={hMenu}>Browse our menu</h1>
+              <div>
+                <p style={pMenu}>
+                  Use our menu to place an order online, or{' '}
+                  <span
+                    style={phoneTooltip}
+                    onMouseEnter={() => setIsTooltipVisible(true)}
+                    onMouseLeave={() => setIsTooltipVisible(false)}
+                  >
+                    phone
+                    {isTooltipVisible && <span style={phoneTooltipHover}>123-456-7890</span>}
+                  </span>{' '}
+                  our store to place a pickup order. Fast and fresh food.
+                </p>
+              </div>
             </div>
-            <h1>Browse our menu</h1>
+            <div style={menuPageFilterButtonsContainer}>
+              <div style={menuPageFilterButtons}>
+                {['Desert', 'Dinner', 'Breakfast'].map((filter) => (
+                  <Button
+                    key={filter}
+                    text={filter}
+                    style={{
+                      ...menuPageButtons,
+                      backgroundColor: selectedFilter === filter ? '#35B8BE' : menuPageButtons.backgroundColor,
+                      color: selectedFilter === filter ? '#FFF' : menuPageButtons.color,
+                    }}
+                    onClick={() => setSelectedFilter(filter)}
+                  />
+                ))}
+              </div>
+            </div>
             <Section products={productsData} addToCart={addToCart} />
           </div>
         );
@@ -89,21 +117,18 @@ const MenuPage = () => {
       default:
         return (
           <div style={containerMenu}>
-            <div>Something went wrong (:</div>
+            <div>Something went wrong!</div>
           </div>
         );
-
     }
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-      <Header setSelectedSection={setSelectedSection} toggleCart={toggleCartVisibility} cartItemCount={cartItems.length} />
-      <main style={{ flex: 1 }}>
-        {renderContent()}
-      </main>
+    <>
+      <Header setSelectedSection={setSelectedSection} selectedSection={selectedSection} toggleCart={toggleCartVisibility} cartItemCount={cartItems.length}/>
+      <main style={{backgroundColor: '#F5FBFC'}}>{renderContent()}</main>
       <Footer />
-    </div>
+    </>
   );
 };
 

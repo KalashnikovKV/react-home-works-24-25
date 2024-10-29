@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import ProductCard from '../ProductCardContainer/ProductCard';
-import { sectionContainerStyles, productGridStyles } from './styles';
+import { sectionContainerStyles, productGridStyles,sectionButtonStyles } from './styles';
+import Button from '../ButtonComponent/Button';
 
 const Section = ({ products, addToCart }) => {
   return (
@@ -10,6 +11,7 @@ const Section = ({ products, addToCart }) => {
           <ProductCard key={product.id} product={product} addToCart={addToCart} />
         ))}
       </div>
+      <Button text='See more' style={sectionButtonStyles}></Button>
     </div>
   );
 };

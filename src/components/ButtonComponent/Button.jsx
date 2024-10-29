@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import { buttonStyles } from './styles';
 
-const Button = ({ text, onClick = () => {} }) => {
+const Button = ({ text, icon = null, onClick = () => {}, style = {} }) => {
   return (
-    <button style={buttonStyles} onClick={onClick}>
+    <button style={{ ...style, display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none'}} onClick={onClick}>
+      {icon && <span>{icon}</span>}
       {text}
     </button>
   );
@@ -11,7 +11,10 @@ const Button = ({ text, onClick = () => {} }) => {
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
+  icon: PropTypes.element, 
   onClick: PropTypes.func,
+  style: PropTypes.object,
 };
 
 export default Button;
+
