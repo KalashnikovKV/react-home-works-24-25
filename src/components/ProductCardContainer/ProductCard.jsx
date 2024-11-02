@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { namePriceContainer,productCardStyles, productImageStyles, productInfoStyles, quantityInputStyles, addButtonStyles, removeButtonStyles, productName, productDescribtion, productPrice } from './styles';
+import { namePriceContainer,productCardStyles, productImageStyles, productInfoStyles,  addButtonStyles, removeButtonStyles, productName, productDescribtion, productPrice } from './styles';
 import Button from '../ButtonComponent/Button';
 
 const ProductCard = ({ product, addToCart = () => {}, isInCart = false, onRemove = () => {} }) => {
@@ -30,7 +30,8 @@ const ProductCard = ({ product, addToCart = () => {}, isInCart = false, onRemove
                   min="1"
                   value={product.quantity}
                   readOnly
-                  style={quantityInputStyles}
+                  // style={quantityInputStyles}
+                  className="quantity-input"
                 />
                 <Button text="Remove" onClick={onRemove} style={removeButtonStyles} />
               </>
@@ -41,7 +42,8 @@ const ProductCard = ({ product, addToCart = () => {}, isInCart = false, onRemove
                   min="1"
                   value={quantity}
                   onChange={(e) => setQuantity(Number(e.target.value))}
-                  style={quantityInputStyles}
+                  // style={quantityInputStyles}
+                  className="quantity-input"
                 />
                 <Button text="Add to Cart" onClick={handleAddToCart} style={addButtonStyles} />
               </>

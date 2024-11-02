@@ -3,3 +3,28 @@
   margin: 0 auto;
 }
 
+.quantity-input {
+  width: 60px;
+  height: 45px;
+  border-radius: 6px;
+  border: 1px solid #DDD;
+  background: #FAFAFA;
+  text-align: center;
+
+  color: #000;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.36px;
+
+  /* Убираем стрелки в браузерах на основе WebKit */
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
