@@ -47,6 +47,9 @@ export const productDescribtion = {
   marginTop: 6,
   marginBottom: 8,
   textAlign: "left",
+  whiteSpace: "nowrap",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
 };
 
 export const productImageStyles = {

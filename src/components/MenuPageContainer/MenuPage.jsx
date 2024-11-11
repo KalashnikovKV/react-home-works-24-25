@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Component } from 'react';
 import Header from '../HeaderContainer/Header';
 import Footer from '../FooterContainer/Footer';
 import Section from '../SectionContainer/Section';
@@ -16,46 +16,61 @@ import {
 } from './styles';
 import Button from '../ButtonComponent/Button';
 
-const productsData = [
-  { id: 1, image: './src/assets/images/menuPage/burgerDreams.png', name: 'Burger Dreams', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 29.99 },
-  { id: 2, image: './src/assets/images/menuPage/burgerCali.png', name: 'Burger Cali', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 19.99 },
-  { id: 3, image: './src/assets/images/menuPage/burgerSpicy.png', name: 'Burger Spicy', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 39.99 },
-  { id: 4, image: './src/assets/images/menuPage/burgerWaldo.png', name: 'Burger Waldo', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 24.99 },
-  { id: 5, image: './src/assets/images/menuPage/burgerBaconBaddy.png', name: 'Burger Bacon Buddy', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 44.99 },
-  { id: 6, image: './src/assets/images/menuPage/burgerClassic.png', name: 'Burger Classic', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', price: 34.99 },
-];
+class MenuPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedSection: 'Home',
+      selectedFilter: null,
+      cartItems: [],
+      isCartVisible: false,
+      isTooltipVisible: false,
+    };
+  }
 
-const MenuPage = () => {
-  const [selectedSection, setSelectedSection] = useState('Home');
-  const [selectedFilter, setSelectedFilter] = useState(null);
-  const [cartItems, setCartItems] = useState([]);
-  const [isCartVisible, setIsCartVisible] = useState(false);
-  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
-
-  const addToCart = (product) => {
-    setCartItems((prevItems) => {
-      const existingItem = prevItems.find((item) => item.id === product.id);
+  addToCart = (product) => {
+    this.setState((prevState) => {
+      const existingItem = prevState.cartItems.find((item) => item.id === product.id);
       if (existingItem) {
-        return prevItems.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + product.quantity } : item
-        );
+        return {
+          cartItems: prevState.cartItems.map((item) =>
+            item.id === product.id ? { ...item, quantity: item.quantity + product.quantity } : item
+          ),
+        };
       }
-      return [...prevItems, { ...product }];
+      return { cartItems: [...prevState.cartItems, { ...product }] };
     });
   };
 
-  const removeFromCart = (id) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  removeFromCart = (id) => {
+    this.setState((prevState) => ({
+      cartItems: prevState.cartItems.filter((item) => item.id !== id),
+    }));
   };
 
-  const toggleCartVisibility = () => {
-    setIsCartVisible(!isCartVisible);
+  toggleCartVisibility = () => {
+    this.setState((prevState) => ({ isCartVisible: !prevState.isCartVisible }));
   };
 
-  const renderContent = () => {
+  setSelectedSection = (section) => {
+    this.setState({ selectedSection: section });
+  };
+
+  setSelectedFilter = (filter) => {
+    this.setState({ selectedFilter: filter });
+  };
+
+  toggleTooltipVisibility = () => {
+    this.setState((prevState) => ({ isTooltipVisible: !prevState.isTooltipVisible }));
+  };
+
+  renderContent = () => {
+    const { isCartVisible, selectedSection, selectedFilter, isTooltipVisible } = this.state;
+
     if (isCartVisible) {
-      return <Cart cartItems={cartItems} removeFromCart={removeFromCart} />;
+      return <Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart} />;
     }
+
     switch (selectedSection) {
       case 'Home':
         return (
@@ -73,8 +88,8 @@ const MenuPage = () => {
                   Use our menu to place an order online, or{' '}
                   <span
                     style={phoneTooltip}
-                    onMouseEnter={() => setIsTooltipVisible(true)}
-                    onMouseLeave={() => setIsTooltipVisible(false)}
+                    onMouseEnter={this.toggleTooltipVisibility}
+                    onMouseLeave={this.toggleTooltipVisibility}
                   >
                     phone
                     {isTooltipVisible && <span style={phoneTooltipHover}>123-456-7890</span>}
@@ -94,12 +109,12 @@ const MenuPage = () => {
                       backgroundColor: selectedFilter === filter ? '#35B8BE' : menuPageButtons.backgroundColor,
                       color: selectedFilter === filter ? '#FFF' : menuPageButtons.color,
                     }}
-                    onClick={() => setSelectedFilter(filter)}
+                    onClick={() => this.setSelectedFilter(filter)}
                   />
                 ))}
               </div>
             </div>
-            <Section products={productsData} addToCart={addToCart} />
+            <Section addToCart={this.addToCart} />
           </div>
         );
       case 'Company':
@@ -123,13 +138,22 @@ const MenuPage = () => {
     }
   };
 
-  return (
-    <>
-      <Header setSelectedSection={setSelectedSection} selectedSection={selectedSection} toggleCart={toggleCartVisibility} cartItemCount={cartItems.length}/>
-      <main style={{backgroundColor: '#F5FBFC'}}>{renderContent()}</main>
-      <Footer />
-    </>
-  );
-};
+  render() {
+    const { selectedSection, cartItems } = this.state;
+
+    return (
+      <>
+        <Header
+          setSelectedSection={this.setSelectedSection}
+          selectedSection={selectedSection}
+          toggleCart={this.toggleCartVisibility}
+          cartItemCount={cartItems.length}
+        />
+        <main style={{ backgroundColor: '#F5FBFC' }}>{this.renderContent()}</main>
+        <Footer />
+      </>
+    );
+  }
+}
 
 export default MenuPage;

@@ -59,6 +59,7 @@ export const headerButtonStyle = {
   width: 55,
   height: 55,
   padding: 0,
+  borderRadius: "6px",
 };
 
 export const buttonContainer = {
