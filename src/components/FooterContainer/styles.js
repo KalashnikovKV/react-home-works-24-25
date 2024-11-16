@@ -64,7 +64,6 @@ export const footerColumnName = {
 
 export const footerColumnListLi = {
   marginTop: 28,
-
   color: "#546285",
   fontFamily: "Inter",
   fontSize: 15,
