@@ -1,4 +1,3 @@
-import  { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
   header,
@@ -14,52 +13,41 @@ import {
 } from './styles';
 import Button from '../ButtonComponent/Button';
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.navItems = ['Home', 'Menu', 'Company', 'Login'];
-  }
+const Header = ({ setSelectedSection, selectedSection, toggleCart, cartItemCount }) => {
+  const navItems = ['Home', 'Menu', 'Company', 'Login'];
 
-  handleNavItemClick = (item) => {
-    this.props.setSelectedSection(item);
-  };
-
-  render() {
-    const { selectedSection, toggleCart, cartItemCount } = this.props;
-
-    return (
-      <header style={header}>
-        <div style={headerContainer}>
-          <div style={logo}>
-            <img style={logoIcon} src="./src/assets/icons/header/logo.png" alt="Logo" />
-          </div>
-          <nav style={nav}>
-            <ul style={navList}>
-              {this.navItems.map((item) => (
-                <li
-                  key={item}
-                  onClick={() => this.handleNavItemClick(item)}
-                  style={selectedSection === item ? activeNavItemStyles : navItemStyles}
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div style={buttonContainer}>
-            <Button
-              text=""
-              onClick={toggleCart}
-              style={headerButtonStyle}
-              icon={<img src="./src/assets/icons/header/frame.png" alt="frame" />}
-              cartItemCount={cartItemCount}
-            />
-          </div>
+  return (
+    <header style={header}>
+      <div style={headerContainer}>
+        <div style={logo}>
+          <img style={logoIcon} src="./src/assets/icons/header/logo.png" alt="Logo" />
         </div>
-      </header>
-    );
-  }
-}
+        <nav style={nav}>
+          <ul style={navList}>
+            {navItems.map((item) => (
+              <li
+                key={item}
+                onClick={() => setSelectedSection(item)}
+                style={selectedSection === item ? activeNavItemStyles : navItemStyles}
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div style={buttonContainer}>
+          <Button
+            text=""
+            onClick={toggleCart}
+            style={headerButtonStyle}
+            icon={<img src="./src/assets/icons/header/frame.png" alt="frame" />}
+            cartItemCount={cartItemCount}
+          />
+        </div>
+      </div>
+    </header>
+  );
+};
 
 Header.propTypes = {
   setSelectedSection: PropTypes.func.isRequired,

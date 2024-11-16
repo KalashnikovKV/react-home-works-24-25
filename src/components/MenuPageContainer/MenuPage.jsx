@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import Header from '../HeaderContainer/Header';
 import Footer from '../FooterContainer/Footer';
 import Section from '../SectionContainer/Section';
@@ -16,59 +16,40 @@ import {
 } from './styles';
 import Button from '../ButtonComponent/Button';
 
-class MenuPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedSection: 'Home',
-      selectedFilter: null,
-      cartItems: [],
-      isCartVisible: false,
-      isTooltipVisible: false,
-    };
-  }
+const MenuPage = () => {
+  const [selectedSection, setSelectedSection] = useState('Home');
+  const [selectedFilter, setSelectedFilter] = useState(null);
+  const [cartItems, setCartItems] = useState([]);
+  const [isCartVisible, setIsCartVisible] = useState(false);
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
-  addToCart = (product) => {
-    this.setState((prevState) => {
-      const existingItem = prevState.cartItems.find((item) => item.id === product.id);
+  const addToCart = (product) => {
+    setCartItems((prevCartItems) => {
+      const existingItem = prevCartItems.find((item) => item.id === product.id);
       if (existingItem) {
-        return {
-          cartItems: prevState.cartItems.map((item) =>
-            item.id === product.id ? { ...item, quantity: item.quantity + product.quantity } : item
-          ),
-        };
+        return prevCartItems.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity + product.quantity } : item
+        );
       }
-      return { cartItems: [...prevState.cartItems, { ...product }] };
+      return [...prevCartItems, { ...product }];
     });
   };
 
-  removeFromCart = (id) => {
-    this.setState((prevState) => ({
-      cartItems: prevState.cartItems.filter((item) => item.id !== id),
-    }));
+  const removeFromCart = (id) => {
+    setCartItems((prevCartItems) => prevCartItems.filter((item) => item.id !== id));
   };
 
-  toggleCartVisibility = () => {
-    this.setState((prevState) => ({ isCartVisible: !prevState.isCartVisible }));
+  const toggleCartVisibility = () => {
+    setIsCartVisible((prevVisibility) => !prevVisibility);
   };
 
-  setSelectedSection = (section) => {
-    this.setState({ selectedSection: section });
+  const toggleTooltipVisibility = () => {
+    setIsTooltipVisible((prevVisibility) => !prevVisibility);
   };
 
-  setSelectedFilter = (filter) => {
-    this.setState({ selectedFilter: filter });
-  };
-
-  toggleTooltipVisibility = () => {
-    this.setState((prevState) => ({ isTooltipVisible: !prevState.isTooltipVisible }));
-  };
-
-  renderContent = () => {
-    const { isCartVisible, selectedSection, selectedFilter, isTooltipVisible } = this.state;
-
+  const renderContent = () => {
     if (isCartVisible) {
-      return <Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart} />;
+      return <Cart cartItems={cartItems} removeFromCart={removeFromCart} />;
     }
 
     switch (selectedSection) {
@@ -88,8 +69,8 @@ class MenuPage extends Component {
                   Use our menu to place an order online, or{' '}
                   <span
                     style={phoneTooltip}
-                    onMouseEnter={this.toggleTooltipVisibility}
-                    onMouseLeave={this.toggleTooltipVisibility}
+                    onMouseEnter={toggleTooltipVisibility}
+                    onMouseLeave={toggleTooltipVisibility}
                   >
                     phone
                     {isTooltipVisible && <span style={phoneTooltipHover}>123-456-7890</span>}
@@ -100,7 +81,7 @@ class MenuPage extends Component {
             </div>
             <div style={menuPageFilterButtonsContainer}>
               <div style={menuPageFilterButtons}>
-                {['Desert', 'Dinner', 'Breakfast'].map((filter) => (
+                {['Dessert', 'Dinner', 'Breakfast'].map((filter) => (
                   <Button
                     key={filter}
                     text={filter}
@@ -109,12 +90,12 @@ class MenuPage extends Component {
                       backgroundColor: selectedFilter === filter ? '#35B8BE' : menuPageButtons.backgroundColor,
                       color: selectedFilter === filter ? '#FFF' : menuPageButtons.color,
                     }}
-                    onClick={() => this.setSelectedFilter(filter)}
+                    onClick={() => setSelectedFilter(filter)}
                   />
                 ))}
               </div>
             </div>
-            <Section addToCart={this.addToCart} />
+            <Section addToCart={addToCart} selectedFilter={selectedFilter} />
           </div>
         );
       case 'Company':
@@ -138,22 +119,18 @@ class MenuPage extends Component {
     }
   };
 
-  render() {
-    const { selectedSection, cartItems } = this.state;
-
-    return (
-      <>
-        <Header
-          setSelectedSection={this.setSelectedSection}
-          selectedSection={selectedSection}
-          toggleCart={this.toggleCartVisibility}
-          cartItemCount={cartItems.length}
-        />
-        <main style={{ backgroundColor: '#F5FBFC' }}>{this.renderContent()}</main>
-        <Footer />
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Header
+        setSelectedSection={setSelectedSection}
+        selectedSection={selectedSection}
+        toggleCart={toggleCartVisibility}
+        cartItemCount={cartItems.length}
+      />
+      <main style={{ backgroundColor: '#F5FBFC' }}>{renderContent()}</main>
+      <Footer />
+    </>
+  );
+};
 
 export default MenuPage;

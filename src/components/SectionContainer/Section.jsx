@@ -5,19 +5,31 @@ import { sectionContainerStyles, productGridStyles, sectionButtonStyles } from '
 import Button from '../ButtonComponent/Button';
 import useMeals from '../../hooks/useMeals';
 
-const Section = ({ addToCart }) => {
-  const { meals, loading, error } = useMeals();
+const Section = ({ addToCart, selectedFilter }) => {
   const [displayedProducts, setDisplayedProducts] = useState([]);
+  const [filteredMeals, setFilteredMeals] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+
   const productsPerPage = 6;
 
+  const { meals, loading, error } = useMeals();
+
   useEffect(() => {
-    if (meals.length) {
-      const startIndex = (currentPage - 1) * productsPerPage;
-      const newProducts = meals.slice(startIndex, startIndex + productsPerPage);
-      setDisplayedProducts((prevProducts) => [...prevProducts, ...newProducts]);
-    }
-  }, [meals, currentPage]);
+    const updatedFilteredMeals = !selectedFilter
+      ? meals
+      : meals.filter((meal) => meal.category === selectedFilter);
+
+    setFilteredMeals(updatedFilteredMeals);
+    setCurrentPage(1);
+  }, [meals, selectedFilter]);
+
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * productsPerPage;
+    const newProducts = filteredMeals.slice(startIndex, startIndex + productsPerPage);
+    setDisplayedProducts((prevProducts) =>
+      currentPage === 1 ? newProducts : [...prevProducts, ...newProducts]
+    );
+  }, [filteredMeals, currentPage]);
 
   const handleSeeMoreClick = () => {
     setCurrentPage((prevPage) => prevPage + 1);
@@ -33,7 +45,8 @@ const Section = ({ addToCart }) => {
           <ProductCard key={product.id} product={product} addToCart={addToCart} />
         ))}
       </div>
-      {displayedProducts.length < meals.length && (
+
+      {displayedProducts.length < filteredMeals.length && (
         <Button text="See more" onClick={handleSeeMoreClick} style={sectionButtonStyles} />
       )}
     </div>
@@ -42,6 +55,7 @@ const Section = ({ addToCart }) => {
 
 Section.propTypes = {
   addToCart: PropTypes.func.isRequired,
+  selectedFilter: PropTypes.string,
 };
 
 export default Section;
