@@ -13,6 +13,11 @@ import {
   hMenu,
   pMenu,
   menuPageFilterButtonsContainer,
+  hHome,
+  p1Home,
+  buttonHome,
+  imageStarHome,
+  p2Home
 } from './styles';
 import Button from '../ButtonComponent/Button';
 
@@ -56,7 +61,22 @@ const MenuPage = () => {
       case 'Home':
         return (
           <div style={containerMenu}>
-            <div>Welcome to the Home Page!</div>
+            <div style={{display: 'flex', flexDirection: 'row', width: 1200, height: 580, marginBottom:140, marginTop: 100 }}>
+              <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start ', textAlign: 'left'}}>
+                  <div style={hHome}>Beautiful food & takeaway, <span style={{color: '#35B8BE'}}>delivered</span> to your door.</div>
+                  <p style={p1Home}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500.</p>
+                  <Button text="Place an Order" onClick={()=> console.log('render')} style={buttonHome} />
+                  <div style={imageStarHome}>
+                    <img src="./src/assets/images/homePage/starAndName.png" alt="starAndName.png" width={110} height={27}/>
+                  </div>
+                  <p style={p2Home}><span style={{color: '#35B8BE'}}>4.8 out of 5</span> based on 2000+ reviews</p>
+              </div>
+              <div>
+                <div>
+                  <img src="./src/assets/images/homePage/food.png" alt="food.png" width={600} height={580}/>
+                </div>
+              </div>
+            </div>
           </div>
         );
       case 'Menu':

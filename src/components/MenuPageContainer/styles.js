@@ -1,13 +1,13 @@
 export const containerMenu = {
   textAlign: "center",
   minWidth: 1200,
-  minHeight: 1056,
+  // minHeight: 1056,
   display: "flex",
   alignItems: "center",
   backgroundColor: "#F5FBFC",
   color: "black",
   flexDirection: "column",
-  marginTop: 140,
+  // marginTop: 140,
 };
 
 export const phoneTooltip = {
@@ -60,7 +60,6 @@ export const menuPageButtons = {
   height: 52,
   borderRadius: 6,
   border: "1px solid rgba(97, 114, 131, 0.20)",
-
   color: "#222",
   fontFamily: "Inter",
   fontSize: 16,
@@ -76,6 +75,7 @@ export const menuDescribe = {
   flexDirection: "column",
   width: 670,
   height: 159,
+  marginTop: 140,
 };
 
 export const hMenu = {
@@ -103,4 +103,52 @@ export const pMenu = {
   fontStyle: "normal",
   fontWeight: 400,
   letterSpacing: 0.36,
+};
+
+export const hHome = {
+  color: "#08090A",
+  fontFamily: "Inter",
+  fontSize: "60px",
+  fontStyle: "normal",
+  fontWeight: "400",
+  lineHeight: "60px",
+  letterSpacing: "1.8px",
+};
+
+export const p1Home = {
+  color: "#546285",
+  fontFamily: "Inter",
+  fontSize: "18px",
+  fontSstyle: "normal",
+  fontWeight: "400",
+  lineHeight: "24.12px",
+  letterSpacing: "0.36px",
+  marginTop: 27,
+  width: 539,
+  height: 73,
+};
+
+export const buttonHome = {
+  width: "193px",
+  height: "60px",
+  flexShrink: "0",
+  backgroundColor: "#35B8BE",
+  borderRadius: 6,
+  border: "1px solid rgba(97, 114, 131, 0.20)",
+  color: "#FFF",
+  textAlign: "center",
+  fontFamily: "Inter",
+  fontSize: "17px",
+  fontStyle: "normal",
+  fontWweight: "400",
+  lineHeight: "20px",
+  marginTop: 53,
+};
+
+export const imageStarHome = {
+  marginTop: 30,
+};
+
+export const p2Home = {
+  marginTop: 10,
 };
