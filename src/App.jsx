@@ -1,13 +1,11 @@
-import './App.css'
-import ItemList from "./components/ItemListContainer/ItemList"
+import './App.css';
+import MenuPage from './components/MenuPageContainer';
 
 function App() {
-  const items = ['Item 1', 'Item 2', 'Item 3'];
-
   return (
-    <div>
-      <ItemList items={items} />
-    </div>
+    <>
+      <MenuPage />
+    </>
   );
 }
 
