@@ -152,3 +152,89 @@ export const imageStarHome = {
 export const p2Home = {
   marginTop: 10,
 };
+
+export const hLogin = {
+  marginTop: 155,
+  color: "#35B8BE",
+  textAlign: "center",
+  fontFamily: "Inter",
+  fontSize: 50,
+  fontStyle: "normal",
+  fontWeight: 400,
+  letterSpacing: 1.65,
+};
+
+export const hLoginForm = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexDirection: "column",
+  marginTop: 53,
+  marginBottom: 254,
+  width: 695,
+  height: 283,
+  borderRadius: "6px",
+  border: "1px solid rgba(53, 184, 190, 0.15)",
+  backgroundColor: "#FFF",
+};
+
+export const divLoginInput = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  flexDirection: "row",
+  width: 560,
+  height: 45,
+  marginBottom: 25,
+  backgroundColor: "#FFF",
+};
+
+export const inputLoginInput = {
+  width: 430,
+  height: 45,
+  borderRadius: "6px",
+  border: "1px solid #DDD",
+  backgroundColor: "#FFF",
+  color: "#000",
+  textAlign: "left",
+  paddingLeft: 15,
+  fontFamily: "Inter",
+  fontSize: "16px",
+  fontStyle: "normal",
+  fontWeight: "400",
+  lineHeight: "27px",
+};
+
+export const buttonLoginS = {
+  marginTop: 19,
+  margin: "0px 30px 0px 0px",
+  width: 147,
+  height: 52,
+  backgroundColor: "#35B8BE",
+  color: "#fff",
+  border: "1px solid rgba(53, 184, 190, 0.15)",
+  borderRadius: "6px",
+  cursor: "pointer",
+  fontFamily: "Inter",
+  fontSize: "16px",
+  fontStyle: "normal",
+  fontWeight: "400",
+  lineHeight: "20px",
+};
+
+export const buttonLoginR = {
+  marginTop: 19,
+  margin: "0px 30px 0px 0px",
+  width: 147,
+  height: 52,
+  backgroundColor: "#FAFAFA",
+  color: "rgba(34, 34, 34, 1)",
+  border: "1px solid rgba(97, 114, 131, 0.20)",
+  borderRadius: "6px",
+  cursor: "pointer",
+  fontFamily: "Inter",
+  fontSize: "16px",
+  fontStyle: "normal",
+  fontWeight: "400",
+  lineHeight: "20px",
+};

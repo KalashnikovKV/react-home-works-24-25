@@ -5,7 +5,7 @@ const Button = ({ text, icon, onClick, style, cartItemCount }) => {
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
       <button
-        style={{ ...style, display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none' }}
+        style={{ ...style, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(53, 184, 190, 0.15)' }}
         onClick={onClick}
       >
         {icon && <span>{icon}</span>} 
