@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import {
   header,
   logo,
@@ -13,7 +14,14 @@ import {
 } from './styles';
 import Button from '../ButtonComponent/Button';
 
-const Header = ({ setSelectedSection, selectedSection, toggleCart, cartItemCount }) => {
+interface HeaderProps {
+  setSelectedSection: (section: string) => void;
+  selectedSection: string;
+  toggleCart: () => void;
+  cartItemCount: number;
+}
+
+const Header: React.FC<HeaderProps> = ({ setSelectedSection, selectedSection, toggleCart, cartItemCount }) => {
   const navItems = ['Home', 'Menu', 'Company', 'Login'];
 
   return (

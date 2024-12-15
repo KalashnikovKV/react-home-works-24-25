@@ -1,4 +1,4 @@
-export const productCardStyles = {
+export const productCardStyles: React.CSSProperties = {
   display: "flex",
   overflow: "hidden",
   width: 580,
@@ -10,7 +10,7 @@ export const productCardStyles = {
   background: "#FFF",
 };
 
-export const namePriceContainer = {
+export const namePriceContainer: React.CSSProperties = {
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",
@@ -18,23 +18,23 @@ export const namePriceContainer = {
   height: 40,
 };
 
-export const productPrice = {
-  margin: 0,
-  padding: 0,
-  color: "#35B8BE",
-};
-
-export const productName = {
+export const productName: React.CSSProperties = {
   margin: 0,
   color: "#08090A",
   fontFamily: "Inter",
   fontSize: 18,
   fontStyle: "normal",
   fontWeight: 400,
-  letterSpacing: 0.6,
+  letterSpacing: "0.6px",
 };
 
-export const productDescribtion = {
+export const productPrice: React.CSSProperties = {
+  margin: 0,
+  padding: 0,
+  color: "#35B8BE",
+};
+
+export const productDescribtion: React.CSSProperties = {
   display: "flex",
   margin: 0,
   padding: 0,
@@ -52,13 +52,13 @@ export const productDescribtion = {
   textOverflow: "ellipsis",
 };
 
-export const productImageStyles = {
+export const productImageStyles: React.CSSProperties = {
   justifyContent: "center",
   width: 120,
   marginLeft: 26,
 };
 
-export const productInfoStyles = {
+export const productInfoStyles: React.CSSProperties = {
   width: 378,
   height: 147,
   display: "flex",
@@ -67,7 +67,7 @@ export const productInfoStyles = {
   marginRight: 26,
 };
 
-export const quantityInputStyles = {
+export const quantityInputStyles: React.CSSProperties = {
   width: 60,
   height: 45,
   borderRadius: 6,
@@ -80,10 +80,10 @@ export const quantityInputStyles = {
   fontSize: 16,
   fontStyle: "normal",
   fontWeight: 400,
-  letterSpacing: 0.36,
+  letterSpacing: "0.36px",
 };
 
-export const addButtonStyles = {
+export const addButtonStyles: React.CSSProperties = {
   marginLeft: 8,
   width: 147,
   height: 45,
@@ -95,10 +95,10 @@ export const addButtonStyles = {
   fontSize: 16,
   fontStyle: "normal",
   fontWeight: 400,
-  letterSpacing: 0.36,
+  letterSpacing: "0.36px",
 };
 
-export const removeButtonStyles = {
+export const removeButtonStyles: React.CSSProperties = {
   backgroundColor: "#e74c3c",
   color: "white",
   border: "none",

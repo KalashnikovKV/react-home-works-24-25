@@ -3,6 +3,7 @@ import Header from "../HeaderContainer/Header";
 import Footer from "../FooterContainer/Footer";
 import Section from "../SectionContainer/Section";
 import Cart from "../CartContainer/Cart";
+import Button from "../ButtonComponent/Button";
 import {
   phoneTooltip,
   containerMenu,
@@ -25,22 +26,42 @@ import {
   buttonLoginS,
   buttonLoginR,
 } from "./styles";
-import Button from "../ButtonComponent/Button";
+
+interface Product {
+  id: number;
+  img: string;
+  meal: string;
+  instructions: string;
+  price: number;
+  description?: string;
+  quantity?: number;
+  category?: string | null;
+}
+
+interface CartItem extends Product {
+  description: string;
+  quantity: number;
+}
+
+interface User {
+  username: string;
+  password: string;
+}
 
 const MenuPage = () => {
-  const [selectedSection, setSelectedSection] = useState("Home");
-  const [selectedFilter, setSelectedFilter] = useState(null);
-  const [cartItems, setCartItems] = useState([]);
-  const [isCartVisible, setIsCartVisible] = useState(false);
-  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+  const [selectedSection, setSelectedSection] = useState<string>("Home");
+  const [selectedFilter, setSelectedFilter] = useState<string | undefined>();
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isCartVisible, setIsCartVisible] = useState<boolean>(false);
+  const [isTooltipVisible, setIsTooltipVisible] = useState<boolean>(false);
 
-  const [users, setUsers] = useState([]);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [users, setUsers] = useState<User[]>([]);
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
-    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+    const storedUsers = JSON.parse(localStorage.getItem("users") || "[]") as User[];
     setUsers(storedUsers);
   }, []);
 
@@ -75,21 +96,26 @@ const MenuPage = () => {
     setPassword("");
   };
 
-  const addToCart = (product) => {
+  const addToCart = (product: Product) => {
+    const cartItem: CartItem = {
+      ...product,
+      description: product.description || "Default description",
+      quantity: product.quantity || 1, 
+    };
     setCartItems((prevCartItems) => {
       const existingItem = prevCartItems.find((item) => item.id === product.id);
       if (existingItem) {
         return prevCartItems.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + product.quantity }
+            ? { ...item, quantity: item.quantity + cartItem.quantity }
             : item
         );
       }
-      return [...prevCartItems, { ...product }];
+      return [...prevCartItems, cartItem];
     });
   };
 
-  const removeFromCart = (id) => {
+  const removeFromCart = (id: number) => {
     setCartItems((prevCartItems) =>
       prevCartItems.filter((item) => item.id !== id)
     );
@@ -115,7 +141,7 @@ const MenuPage = () => {
             <div
               style={{
                 display: "flex",
-                flexDirection: "row",
+                flexDirection: "row" as const,
                 width: 1200,
                 height: 580,
                 marginBottom: 140,
@@ -125,9 +151,9 @@ const MenuPage = () => {
               <div
                 style={{
                   display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start ",
-                  textAlign: "left",
+                  flexDirection: "column" as const,
+                  alignItems: "flex-start",
+                  textAlign: "left" as const,
                 }}
               >
                 <div style={hHome}>
@@ -138,17 +164,17 @@ const MenuPage = () => {
                 <p style={p1Home}>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry&apos;s
-                  standard dummy text ever since the 1500.
+                  standard dummy text ever since the 1500s.
                 </p>
                 <Button
                   text="Place an Order"
-                  onClick={() => console.log("render")}
+                  onClick={() => console.log("Order placed")}
                   style={buttonHome}
                 />
                 <div style={imageStarHome}>
                   <img
                     src="./src/assets/images/homePage/starAndName.png"
-                    alt="starAndName.png"
+                    alt="starAndName"
                     width={110}
                     height={27}
                   />
@@ -159,14 +185,12 @@ const MenuPage = () => {
                 </p>
               </div>
               <div>
-                <div>
-                  <img
-                    src="./src/assets/images/homePage/food.png"
-                    alt="food.png"
-                    width={600}
-                    height={580}
-                  />
-                </div>
+                <img
+                  src="./src/assets/images/homePage/food.png"
+                  alt="food"
+                  width={600}
+                  height={580}
+                />
               </div>
             </div>
           </div>
@@ -262,15 +286,12 @@ const MenuPage = () => {
                     />
                   </div>
                   <div>
-                    <Button
-                      text="Submit"
-                      style={buttonLoginS}
-                    ></Button>
+                    <Button text="Submit" style={buttonLoginS} />
                     <Button
                       text="Register"
                       onClick={handleRegister}
                       style={buttonLoginR}
-                    ></Button>
+                    />
                   </div>
                 </form>
               </div>
@@ -288,7 +309,7 @@ const MenuPage = () => {
                     borderRadius: "4px",
                     cursor: "pointer",
                   }}
-                ></Button>
+                />
               </div>
             )}
           </div>

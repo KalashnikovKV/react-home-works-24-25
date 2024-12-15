@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 
 const useMeals = () => {
-  const [meals, setMeals] = useState([]);
+  const [meals, setMeals] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
     const fetchMeals = async () => {
       setLoading(true);
@@ -16,8 +17,12 @@ const useMeals = () => {
         }
         const data = await response.json();
         setMeals(data);
-      } catch (error) {
-        setError(error.message);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError("An unknown error occurred.");
+        }
       } finally {
         setLoading(false);
       }

@@ -1,4 +1,4 @@
-export const containerMenu = {
+export const containerMenu: React.CSSProperties = {
   textAlign: "center",
   minWidth: 1200,
   // minHeight: 1056,
@@ -10,7 +10,7 @@ export const containerMenu = {
   // marginTop: 140,
 };
 
-export const phoneTooltip = {
+export const phoneTooltip: React.CSSProperties = {
   position: "relative",
   cursor: "pointer",
   textDecoration: "none",
@@ -24,7 +24,7 @@ export const phoneTooltip = {
   letterSpacing: 0.36,
 };
 
-export const phoneTooltipHover = {
+export const phoneTooltipHover: React.CSSProperties = {
   content: '"123-456-7890"',
   position: "absolute",
   bottom: "100%",
@@ -38,7 +38,7 @@ export const phoneTooltipHover = {
   marginBottom: "5px",
   zIndex: 1,
 };
-export const menuPageFilterButtonsContainer = {
+export const menuPageFilterButtonsContainer: React.CSSProperties = {
   marginTop: 50,
   display: "flex",
   alignItems: "center",
@@ -47,7 +47,7 @@ export const menuPageFilterButtonsContainer = {
   height: 52,
 };
 
-export const menuPageFilterButtons = {
+export const menuPageFilterButtons: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -55,7 +55,7 @@ export const menuPageFilterButtons = {
   height: 52,
 };
 
-export const menuPageButtons = {
+export const menuPageButtons: React.CSSProperties = {
   width: 132,
   height: 52,
   borderRadius: 6,
@@ -68,7 +68,7 @@ export const menuPageButtons = {
   backgroundColor: "#FFF",
 };
 
-export const menuDescribe = {
+export const menuDescribe: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -78,7 +78,7 @@ export const menuDescribe = {
   marginTop: 140,
 };
 
-export const hMenu = {
+export const hMenu: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -93,7 +93,7 @@ export const hMenu = {
   letterSpacing: 1.65,
 };
 
-export const pMenu = {
+export const pMenu: React.CSSProperties = {
   width: 466,
 
   color: "#546285",
@@ -105,7 +105,7 @@ export const pMenu = {
   letterSpacing: 0.36,
 };
 
-export const hHome = {
+export const hHome: React.CSSProperties = {
   color: "#08090A",
   fontFamily: "Inter",
   fontSize: "60px",
@@ -115,11 +115,11 @@ export const hHome = {
   letterSpacing: "1.8px",
 };
 
-export const p1Home = {
+export const p1Home: React.CSSProperties = {
   color: "#546285",
   fontFamily: "Inter",
   fontSize: "18px",
-  fontSstyle: "normal",
+  fontStyle: "normal",
   fontWeight: "400",
   lineHeight: "24.12px",
   letterSpacing: "0.36px",
@@ -128,7 +128,7 @@ export const p1Home = {
   height: 73,
 };
 
-export const buttonHome = {
+export const buttonHome: React.CSSProperties = {
   width: "193px",
   height: "60px",
   flexShrink: "0",
@@ -136,24 +136,24 @@ export const buttonHome = {
   borderRadius: 6,
   border: "1px solid rgba(97, 114, 131, 0.20)",
   color: "#FFF",
-  textAlign: "center",
+  textAlign: "center"as const,
   fontFamily: "Inter",
   fontSize: "17px",
   fontStyle: "normal",
-  fontWweight: "400",
+  fontWeight: "400",
   lineHeight: "20px",
   marginTop: 53,
 };
 
-export const imageStarHome = {
+export const imageStarHome: React.CSSProperties = {
   marginTop: 30,
 };
 
-export const p2Home = {
+export const p2Home: React.CSSProperties = {
   marginTop: 10,
 };
 
-export const hLogin = {
+export const hLogin: React.CSSProperties = {
   marginTop: 155,
   color: "#35B8BE",
   textAlign: "center",
@@ -164,7 +164,7 @@ export const hLogin = {
   letterSpacing: 1.65,
 };
 
-export const hLoginForm = {
+export const hLoginForm: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -178,7 +178,7 @@ export const hLoginForm = {
   backgroundColor: "#FFF",
 };
 
-export const divLoginInput = {
+export const divLoginInput: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
@@ -189,7 +189,7 @@ export const divLoginInput = {
   backgroundColor: "#FFF",
 };
 
-export const inputLoginInput = {
+export const inputLoginInput : React.CSSProperties= {
   width: 430,
   height: 45,
   borderRadius: "6px",
@@ -205,7 +205,7 @@ export const inputLoginInput = {
   lineHeight: "27px",
 };
 
-export const buttonLoginS = {
+export const buttonLoginS: React.CSSProperties = {
   marginTop: 19,
   margin: "0px 30px 0px 0px",
   width: 147,
@@ -222,7 +222,7 @@ export const buttonLoginS = {
   lineHeight: "20px",
 };
 
-export const buttonLoginR = {
+export const buttonLoginR: React.CSSProperties = {
   marginTop: 19,
   margin: "0px 30px 0px 0px",
   width: 147,
