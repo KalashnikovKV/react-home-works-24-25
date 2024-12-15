@@ -1,4 +1,4 @@
-export const buttonStyles = {
+export const buttonStyles: React.CSSProperties = {
   padding: "10px 20px",
   backgroundColor: "#007bff",
   color: "white",
@@ -8,11 +8,11 @@ export const buttonStyles = {
   fontSize: "1rem",
 };
 
-export const buttonHoverStyles = {
+export const buttonHoverStyles: React.CSSProperties = {
   backgroundColor: "#0056b3",
 };
 
-export const badgeStyles = {
+export const badgeStyles: React.CSSProperties = {
   position: "absolute",
   top: "-5px",
   right: "-5px",

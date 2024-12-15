@@ -1,4 +1,4 @@
-export const header = {
+export const header: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
   backgroundColor: "#FFF",
@@ -7,7 +7,7 @@ export const header = {
   height: 100,
 };
 
-export const headerContainer = {
+export const headerContainer: React.CSSProperties = {
   display: "flex",
   width: 1200,
   height: 60,
@@ -15,16 +15,16 @@ export const headerContainer = {
   marginBottom: 20,
 };
 
-export const logo = {
+export const logo: React.CSSProperties = {
   justifyContent: "center",
   alignItems: "center",
 };
-export const logoIcon = {
+export const logoIcon: React.CSSProperties = {
   width: 40,
   height: 51,
 };
 
-export const nav = {
+export const nav: React.CSSProperties = {
   display: "flex",
   width: 408,
   height: 60,
@@ -34,7 +34,7 @@ export const nav = {
   marginRight: 14,
 };
 
-export const navList = {
+export const navList: React.CSSProperties = {
   margin: 0,
   padding: 0,
   paddingLeft: 16,
@@ -54,7 +54,7 @@ export const navList = {
   lineHeight: 20,
 };
 
-export const headerButtonStyle = {
+export const headerButtonStyle: React.CSSProperties = {
   backgroundColor: "#35B8BE",
   width: 55,
   height: 55,
@@ -62,21 +62,21 @@ export const headerButtonStyle = {
   borderRadius: "6px",
 };
 
-export const buttonContainer = {
+export const buttonContainer: React.CSSProperties = {
   width: 55,
   height: 55,
 };
 
-export const cart = {};
+export const cart: React.CSSProperties = {};
 
-export const navItemStyles = {
+export const navItemStyles: React.CSSProperties = {
   cursor: "pointer",
   color: "#222",
   padding: "10px 15px",
   textDecoration: "none",
 };
 
-export const activeNavItemStyles = {
+export const activeNavItemStyles: React.CSSProperties = {
   ...navItemStyles,
   color: "#35B8BE",
   fontWeight: "bold",

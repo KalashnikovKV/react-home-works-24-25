@@ -1,12 +1,26 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import ProductCard from '../ProductCardContainer/ProductCard';
-import { cartContainerStyles, inputStyles, buttonContainerStyles } from './styles';
-import Button from '../ButtonComponent/Button';
+import { useState } from "react";
+import ProductCard from "../ProductCardContainer/ProductCard";
+import Button from "../ButtonComponent/Button";
+import { buttonContainerStyles, cartContainerStyles, inputStyles } from "./styles";
 
-const Cart = ({ cartItems, removeFromCart }) => {
-  const [street, setStreet] = useState('');
-  const [house, setHouse] = useState('');
+interface CartItem {
+  id: number;
+  img: string;
+  meal: string;
+  description: string;
+  instructions: string;
+  price: number;
+  quantity: number;
+}
+
+interface CartProps {
+  cartItems: CartItem[];
+  removeFromCart: (id: number) => void;
+}
+
+const Cart: React.FC<CartProps> = ({ cartItems, removeFromCart }) => {
+  const [street, setStreet] = useState<string>("");
+  const [house, setHouse] = useState<string>("");
 
   const handleOrder = () => {
     alert(`Order placed! Address: ${street}, ${house}`);
@@ -19,9 +33,9 @@ const Cart = ({ cartItems, removeFromCart }) => {
         <p>Your cart is empty</p>
       ) : (
         <div>
-          {cartItems.map((item, index) => (
+          {cartItems.map((item) => (
             <ProductCard
-              key={index}
+              key={item.id}
               product={item}
               isInCart={true}
               onRemove={() => removeFromCart(item.id)}
@@ -42,7 +56,7 @@ const Cart = ({ cartItems, removeFromCart }) => {
               onChange={(e) => setHouse(e.target.value)}
               style={inputStyles}
             />
-          </div>
+          </div >
           <div style={buttonContainerStyles}>
             <Button text="Place Order" onClick={handleOrder} />
           </div>
@@ -50,20 +64,6 @@ const Cart = ({ cartItems, removeFromCart }) => {
       )}
     </div>
   );
-};
-
-Cart.propTypes = {
-  cartItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      image: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      description: PropTypes.string,
-      price: PropTypes.number.isRequired,
-      quantity: PropTypes.number.isRequired,
-    })
-  ).isRequired,
-  removeFromCart: PropTypes.func.isRequired,
 };
 
 export default Cart;

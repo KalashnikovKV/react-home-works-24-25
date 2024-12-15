@@ -1,4 +1,4 @@
-export const sectionContainerStyles = {
+export const sectionContainerStyles: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
   flexDirection: "column",
@@ -7,14 +7,14 @@ export const sectionContainerStyles = {
   marginBottom: 148,
 };
 
-export const productGridStyles = {
+export const productGridStyles: React.CSSProperties = {
   display: "grid",
   gridTemplateColumns: "repeat(2, 1fr)",
   gap: 27,
   boxSizing: "border-box",
 };
 
-export const sectionButtonStyles = {
+export const sectionButtonStyles: React.CSSProperties = {
   marginTop: 65,
   marginLeft: 8,
   width: 147,
