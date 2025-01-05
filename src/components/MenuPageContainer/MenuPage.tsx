@@ -1,9 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import Header from "../HeaderContainer/Header";
 import Footer from "../FooterContainer/Footer";
 import Section from "../SectionContainer/Section";
 import Cart from "../CartContainer/Cart";
 import Button from "../ButtonComponent/Button";
+import {
+  selectIsAuthenticated,
+  selectUser,
+  selectUsers,
+} from "../../redux/selectors/authSelectors";
+import { login, logout, register } from "../../redux/reducers/authReducer";
 import {
   phoneTooltip,
   containerMenu,
@@ -26,6 +32,7 @@ import {
   buttonLoginS,
   buttonLoginR,
 } from "./styles";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 interface Product {
   id: number;
@@ -43,11 +50,6 @@ interface CartItem extends Product {
   quantity: number;
 }
 
-interface User {
-  username: string;
-  password: string;
-}
-
 const MenuPage = () => {
   const [selectedSection, setSelectedSection] = useState<string>("Home");
   const [selectedFilter, setSelectedFilter] = useState<string | undefined>();
@@ -55,43 +57,51 @@ const MenuPage = () => {
   const [isCartVisible, setIsCartVisible] = useState<boolean>(false);
   const [isTooltipVisible, setIsTooltipVisible] = useState<boolean>(false);
 
-  const [users, setUsers] = useState<User[]>([]);
+  const users = useAppSelector(selectUsers);
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-  useEffect(() => {
-    const storedUsers = JSON.parse(localStorage.getItem("users") || "[]") as User[];
-    setUsers(storedUsers);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("users", JSON.stringify(users));
-  }, [users]);
+  const dispatch = useAppDispatch();
+  const isLoggedIn = useAppSelector(selectIsAuthenticated);
+  const user = useAppSelector(selectUser);
 
   const handleLogin = () => {
-    const user = users.find(
-      (u) => u.username === username && u.password === password
-    );
-    if (user) {
-      setIsLoggedIn(true);
+    try {
+      dispatch(login({ username, password }));
       alert("Login successful!");
-    } else {
-      alert("Invalid username or password.");
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert("An unexpected error occurred.");
+      }
     }
   };
 
   const handleRegister = () => {
-    if (users.find((u) => u.username === username)) {
+    const existingUser = users.find((u) => u.username === username);
+
+    if (existingUser) {
       alert("Username already exists.");
       return;
     }
-    setUsers([...users, { username, password }]);
-    alert("Registration successful! Please log in.");
+
+    try {
+      dispatch(register({ username, password }));
+      alert("Registration successful! Please log in.");
+      setUsername("");
+      setPassword("");
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      } else {
+        alert("An unexpected error occurred.");
+      }
+    }
   };
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    dispatch(logout());
     setUsername("");
     setPassword("");
   };
@@ -100,7 +110,7 @@ const MenuPage = () => {
     const cartItem: CartItem = {
       ...product,
       description: product.description || "Default description",
-      quantity: product.quantity || 1, 
+      quantity: product.quantity || 1,
     };
     setCartItems((prevCartItems) => {
       const existingItem = prevCartItems.find((item) => item.id === product.id);
@@ -297,7 +307,7 @@ const MenuPage = () => {
               </div>
             ) : (
               <div style={containerMenu}>
-                <h2>Welcome, {username}!</h2>
+                <h2>Welcome, {user?.username}!</h2>
                 <Button
                   text="Logout"
                   onClick={handleLogout}
