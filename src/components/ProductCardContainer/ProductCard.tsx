@@ -1,40 +1,56 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import {
-  namePriceContainer,
-  productCardStyles,
-  productImageStyles,
-  productInfoStyles,
-  addButtonStyles,
-  removeButtonStyles,
-  productName,
-  productDescribtion,
-  productPrice,
-} from './styles';
-import Button from '../ButtonComponent/Button';
+import { useState, ChangeEvent } from "react";
+import Button from "../ButtonComponent/Button";
+import { addButtonStyles, namePriceContainer, productCardStyles, productDescribtion, productImageStyles, productInfoStyles, productName, productPrice, removeButtonStyles } from "./styles";
 
-const ProductCard = ({ product, addToCart, isInCart, onRemove }) => {
-  const [quantity, setQuantity] = useState(1);
+interface Product {
+  id: number;
+  img: string;
+  meal: string;
+  instructions: string;
+  price: number;
+  description?: string;
+  quantity?: number;
+  category?: string | null;
+}
+
+interface ProductCardProps {
+  product: Product;
+  addToCart?: (product: Product) => void;
+  isInCart?: boolean;
+  onRemove?: () => void;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({
+  product,
+  addToCart = () => {},
+  isInCart = false,
+  onRemove = () => {},
+}) => {
+  const [quantity, setQuantity] = useState<number>(product.quantity || 1);
+
+  const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setQuantity(Number(event.target.value));
+  };
 
   const handleAddToCart = () => {
     addToCart({ ...product, quantity });
   };
 
-  const handleQuantityChange = (event) => {
-    setQuantity(Number(event.target.value));
-  };
-
   return (
     <div style={productCardStyles}>
       <div style={productImageStyles}>
-        <img src={product.img} alt={product.meal} style={{ width: 120, height: 120 }} />
+        <img
+          src={product.img}
+          alt={product.meal}
+          style={{ width: 120, height: 120 }}
+        />
       </div>
 
       <div style={productInfoStyles}>
         <div style={namePriceContainer}>
           <h2 style={productName}>{product.meal}</h2>
           <p style={productPrice}>
-            $ {isInCart ? (product.price * product.quantity).toFixed(2) : (product.price * quantity).toFixed(2)} USD
+            $ {isInCart ? (product.price * quantity).toFixed(2) : (product.price * quantity).toFixed(2)} USD
           </p>
         </div>
         <p style={productDescribtion}>{product.instructions}</p>
@@ -65,27 +81,9 @@ const ProductCard = ({ product, addToCart, isInCart, onRemove }) => {
           )}
         </div>
       </div>
+     
     </div>
   );
-};
-
-ProductCard.propTypes = {
-  product: PropTypes.shape({
-    img: PropTypes.string.isRequired,
-    meal: PropTypes.string.isRequired,
-    instructions: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    quantity: PropTypes.number,
-  }).isRequired,
-  addToCart: PropTypes.func,
-  isInCart: PropTypes.bool,
-  onRemove: PropTypes.func,
-};
-
-ProductCard.defaultProps = {
-  addToCart: () => {},
-  isInCart: false,
-  onRemove: () => {},
 };
 
 export default ProductCard;

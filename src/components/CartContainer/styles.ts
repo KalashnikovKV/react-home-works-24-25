@@ -1,4 +1,4 @@
-export const cartContainerStyles = {
+export const cartContainerStyles: React.CSSProperties = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -6,7 +6,7 @@ export const cartContainerStyles = {
   height: 1336,
 };
 
-export const cartItemStyles = {
+export const cartItemStyles: React.CSSProperties = {
   padding: "10px",
   margin: "5px 0",
   backgroundColor: "#f9f9f9",
@@ -15,7 +15,7 @@ export const cartItemStyles = {
   textAlign: "left",
 };
 
-export const inputStyles = {
+export const inputStyles: React.CSSProperties = {
   width: "100%",
   padding: "10px",
   margin: "10px 0",
@@ -23,13 +23,13 @@ export const inputStyles = {
   border: "1px solid #ddd",
 };
 
-export const buttonContainerStyles = {
+export const buttonContainerStyles: React.CSSProperties = {
   display: "flex",
   justifyContent: "center",
   marginTop: "20px",
 };
 
-export const buttonStyles = {
+export const buttonStyles: React.CSSProperties = {
   padding: "10px 20px",
   backgroundColor: "#28a745",
   color: "white",
