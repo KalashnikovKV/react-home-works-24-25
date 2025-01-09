@@ -1,4 +1,4 @@
-export const footer = {
+export const footer: React.CSSProperties = {
   display: "flex",
   justifyContent: "center",
   backgroundColor: "#F5FBFC",
@@ -8,36 +8,36 @@ export const footer = {
   alignItems: "center",
 };
 
-export const footerContainer = {
+export const footerContainer: React.CSSProperties = {
   display: "flex",
   width: 1200,
   height: 232,
   justifyContent: "space-between",
 };
 
-export const footerLeft = {
+export const footerLeft: React.CSSProperties = {
   width: 584,
 };
 
-export const footerRight = {
+export const footerRight: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-around",
 };
 
-export const logo = {
+export const logo: React.CSSProperties = {
   justifyContent: "center",
   alignItems: "center",
 };
-export const logoIcon = {
+export const logoIcon: React.CSSProperties = {
   width: 40,
   height: 51,
 };
 
-export const footerColumn = {
+export const footerColumn: React.CSSProperties = {
   width: 190,
 };
 
-export const footerColumnList = {
+export const footerColumnList: React.CSSProperties = {
   listStyle: "none",
   padding: 0,
   margin: 0,
@@ -46,12 +46,12 @@ export const footerColumnList = {
   flexDirection: "column",
 };
 
-export const footerLink = {
+export const footerLink: React.CSSProperties = {
   color: "#333",
   textDecoration: "none",
 };
 
-export const footerColumnName = {
+export const footerColumnName: React.CSSProperties = {
   color: "#08090A",
   fontFamily: "Inter",
   fontSize: 13,
@@ -62,7 +62,7 @@ export const footerColumnName = {
   margin: 0,
 };
 
-export const footerColumnListLi = {
+export const footerColumnListLi: React.CSSProperties = {
   marginTop: 28,
   color: "#546285",
   fontFamily: "Inter",
@@ -71,12 +71,12 @@ export const footerColumnListLi = {
   fontWeight: 400,
 };
 
-export const footerIcon = {
+export const footerIcon: React.CSSProperties = {
   width: 18,
   height: 18,
 };
 
-export const footerSign = {
+export const footerSign: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
   flexDirection: "row",
@@ -85,7 +85,7 @@ export const footerSign = {
   height: 101,
 };
 
-export const footerIconLink = {
+export const footerIconLink: React.CSSProperties = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -96,7 +96,7 @@ export const footerIconLink = {
   border: "1px solid rgba(126, 130, 143, 0.30)",
 };
 
-export const footerIconLinkContainer = {
+export const footerIconLinkContainer: React.CSSProperties = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -106,7 +106,7 @@ export const footerIconLinkContainer = {
   margin: 0,
 };
 
-export const pFooterSign = {
+export const pFooterSign: React.CSSProperties = {
   color: "#35B8BE",
   textAlign: "center",
   fontFamily: "Inter",
@@ -120,6 +120,6 @@ export const pFooterSign = {
   marginRight: 10,
 };
 
-export const spanFooterSign = {
+export const spanFooterSign: React.CSSProperties = {
   display: "flex",
 };
