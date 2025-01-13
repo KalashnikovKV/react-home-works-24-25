@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
+import { Link, useLocation } from "react-router-dom";
 import {
   header,
   logo,
@@ -11,34 +12,42 @@ import {
   buttonContainer,
   navItemStyles,
   activeNavItemStyles,
-} from './styles';
-import Button from '../ButtonComponent/Button';
+} from "./styles";
+import Button from "../ButtonComponent/Button";
 
 interface HeaderProps {
-  setSelectedSection: (section: string) => void;
-  selectedSection: string;
-  toggleCart: () => void;
-  cartItemCount: number;
+  toggleCart?: () => void;
+  cartItemCount?: number;
 }
 
-const Header: React.FC<HeaderProps> = ({ setSelectedSection, selectedSection, toggleCart, cartItemCount }) => {
-  const navItems = ['Home', 'Menu', 'Company', 'Login'];
+const Header: React.FC<HeaderProps> = ({ toggleCart, cartItemCount }) => {
+  const location = useLocation(); 
+
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Menu", path: "/menu" },
+    { name: "Company", path: "/company" },
+    { name: "Login", path: "/login" },
+  ];
 
   return (
     <header style={header}>
       <div style={headerContainer}>
         <div style={logo}>
-          <img style={logoIcon} src="./src/assets/icons/header/logo.png" alt="Logo" />
+          <Link to="/">
+            <img style={logoIcon} src="./src/assets/icons/header/logo.png" alt="Logo" />
+          </Link>
         </div>
         <nav style={nav}>
           <ul style={navList}>
             {navItems.map((item) => (
               <li
-                key={item}
-                onClick={() => setSelectedSection(item)}
-                style={selectedSection === item ? activeNavItemStyles : navItemStyles}
+                key={item.name}
+                style={location.pathname === item.path ? activeNavItemStyles : navItemStyles}
               >
-                {item}
+                <Link to={item.path} style={{ textDecoration: "none", color: "inherit" }}>
+                  {item.name}
+                </Link>
               </li>
             ))}
           </ul>
@@ -46,7 +55,7 @@ const Header: React.FC<HeaderProps> = ({ setSelectedSection, selectedSection, to
         <div style={buttonContainer}>
           <Button
             text=""
-            onClick={toggleCart}
+            onClick={()=>{}}
             style={headerButtonStyle}
             icon={<img src="./src/assets/icons/header/frame.png" alt="frame" />}
             cartItemCount={cartItemCount}
@@ -58,8 +67,6 @@ const Header: React.FC<HeaderProps> = ({ setSelectedSection, selectedSection, to
 };
 
 Header.propTypes = {
-  setSelectedSection: PropTypes.func.isRequired,
-  selectedSection: PropTypes.string.isRequired,
   toggleCart: PropTypes.func.isRequired,
   cartItemCount: PropTypes.number.isRequired,
 };

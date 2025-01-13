@@ -1,17 +1,8 @@
 import { useState, ChangeEvent } from "react";
 import Button from "../ButtonComponent/Button";
 import { addButtonStyles, namePriceContainer, productCardStyles, productDescribtion, productImageStyles, productInfoStyles, productName, productPrice, removeButtonStyles } from "./styles";
+import { Product } from "../../utils/types";
 
-interface Product {
-  id: number;
-  img: string;
-  meal: string;
-  instructions: string;
-  price: number;
-  description?: string;
-  quantity?: number;
-  category?: string | null;
-}
 
 interface ProductCardProps {
   product: Product;
