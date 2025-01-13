@@ -1,10 +1,10 @@
 import './App.css';
-import MenuPage from './components/MenuPageContainer';
+import MainRouter from './routes/MainRouter';
 
 function App() {
   return (
     <>
-      <MenuPage />
+      <MainRouter />;
     </>
   );
 }

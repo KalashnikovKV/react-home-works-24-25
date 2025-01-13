@@ -89,7 +89,6 @@ export const addButtonStyles: React.CSSProperties = {
   height: 45,
   borderRadius: 6,
   background: "#35B8BE",
-
   color: "#FFF",
   fontFamily: "Inter",
   fontSize: 16,
@@ -99,9 +98,17 @@ export const addButtonStyles: React.CSSProperties = {
 };
 
 export const removeButtonStyles: React.CSSProperties = {
+  marginLeft: 8,
+  width: 147,
+  height: 45,
+  borderRadius: 6,
   backgroundColor: "#e74c3c",
   color: "white",
   border: "none",
-  borderRadius: "4px",
   cursor: "pointer",
+  fontFamily: "Inter",
+  fontSize: 16,
+  fontStyle: "normal",
+  fontWeight: 400,
+  letterSpacing: "0.36px",
 };
