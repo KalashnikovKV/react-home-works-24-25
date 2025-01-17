@@ -7,24 +7,13 @@ import {
   sectionButtonStyles,
   sectionContainerStyles,
 } from "./styles";
-
-interface Product {
-  id: number;
-  img: string;
-  meal: string;
-  instructions: string;
-  price: number;
-  description?: string;
-  quantity?: number;
-  category?: string | null;
-}
+import { Product } from "../../utils/types";
 
 interface SectionProps {
-  addToCart: (product: Product) => void;
   selectedFilter?: string;
 }
 
-const Section: React.FC<SectionProps> = ({ addToCart, selectedFilter }) => {
+const Section: React.FC<SectionProps> = ({ selectedFilter }) => {
   const [displayedProducts, setDisplayedProducts] = useState<Product[]>([]);
   const [filteredMeals, setFilteredMeals] = useState<Product[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -64,11 +53,7 @@ const Section: React.FC<SectionProps> = ({ addToCart, selectedFilter }) => {
     <div style={sectionContainerStyles}>
       <div style={productGridStyles}>
         {displayedProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            addToCart={addToCart}
-          />
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
 
