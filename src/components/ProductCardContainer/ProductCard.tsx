@@ -1,30 +1,50 @@
-import { useState, ChangeEvent } from "react";
+import { useState } from "react";
 import Button from "../ButtonComponent/Button";
-import { addButtonStyles, namePriceContainer, productCardStyles, productDescribtion, productImageStyles, productInfoStyles, productName, productPrice, removeButtonStyles } from "./styles";
+import {
+  addButtonStyles,
+  namePriceContainer,
+  productCardStyles,
+  productDescribtion,
+  productImageStyles,
+  productInfoStyles,
+  productName,
+  productPrice,
+  removeButtonStyles,
+} from "./styles";
 import { Product } from "../../utils/types";
-
+import { useDispatch } from "react-redux";
+import {
+  addToCart as addToCartAction,
+  removeFromCart as removeFromCartAction,
+} from "../../redux/reducers/cartReducer";
 
 interface ProductCardProps {
   product: Product;
-  addToCart?: (product: Product) => void;
   isInCart?: boolean;
   onRemove?: () => void;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
   product,
-  addToCart = () => {},
   isInCart = false,
-  onRemove = () => {},
 }) => {
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState<number>(product.quantity || 1);
 
-  const handleQuantityChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setQuantity(Number(event.target.value));
+  const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newQuantity = Number(event.target.value);
+    setQuantity(newQuantity);
+    if (isInCart) {
+      dispatch(addToCartAction({ ...product, quantity: newQuantity }));
+    }
   };
 
   const handleAddToCart = () => {
-    addToCart({ ...product, quantity });
+    dispatch(addToCartAction({ ...product, quantity }));
+  };
+
+  const handleRemoveFromCart = () => {
+    dispatch(removeFromCartAction(product.id));
   };
 
   return (
@@ -41,22 +61,26 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div style={namePriceContainer}>
           <h2 style={productName}>{product.meal}</h2>
           <p style={productPrice}>
-            $ {isInCart ? (product.price * quantity).toFixed(2) : (product.price * quantity).toFixed(2)} USD
+            $ {(product.price * quantity).toFixed(2)} USD
           </p>
         </div>
         <p style={productDescribtion}>{product.instructions}</p>
 
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           {isInCart ? (
             <>
               <input
                 type="number"
                 min="1"
-                value={product.quantity}
-                readOnly
+                value={quantity}
+                onChange={handleQuantityChange}
                 className="quantity-input"
               />
-              <Button text="Remove" onClick={onRemove} style={removeButtonStyles} />
+              <Button
+                text="Remove"
+                onClick={handleRemoveFromCart}
+                style={removeButtonStyles}
+              />
             </>
           ) : (
             <>
@@ -67,12 +91,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 onChange={handleQuantityChange}
                 className="quantity-input"
               />
-              <Button text="Add to Cart" onClick={handleAddToCart} style={addButtonStyles} />
+              <Button
+                text="Add to Cart"
+                onClick={handleAddToCart}
+                style={addButtonStyles}
+              />
             </>
           )}
         </div>
       </div>
-     
     </div>
   );
 };

@@ -3,9 +3,6 @@ import Button from "../components/ButtonComponent/Button";
 import Section from "../components/SectionContainer/Section";
 import Footer from "../components/FooterContainer/Footer";
 import Header from "../components/HeaderContainer/Header";
-import { CartItem } from "../utils/types";
-import { useDispatch } from "react-redux";
-import { addToCart as addToCartAction } from "../redux/cartSlice";
 
 const containerMenu: React.CSSProperties = {
   textAlign: "center",
@@ -111,37 +108,13 @@ const menuPageButtons = {
   backgroundColor: "#FFF",
 };
 
-interface Product {
-  id: number;
-  img: string;
-  meal: string;
-  instructions: string;
-  price: number;
-  description?: string;
-  quantity?: number;
-  category?: string | null;
-}
-
-const MenuScreen: React.FC = ({  }) => {
+const MenuScreen = () => {
   const [selectedFilter, setSelectedFilter] = useState<string | undefined>();
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   const toggleTooltipVisibility = () => {
     setIsTooltipVisible(!isTooltipVisible);
   };
-  
-  const dispatch = useDispatch();
-
-  const addToCart = (product: Product) => {
-    const cartItem: CartItem = {
-      ...product,
-      description: product.description || "Default description",
-      quantity: product.quantity || 1,
-    };
-    // console.log(cartItem)
-    dispatch(addToCartAction(cartItem));
-  };
-  
 
   return (
     <>
@@ -186,7 +159,7 @@ const MenuScreen: React.FC = ({  }) => {
             ))}
           </div>
         </div>
-        <Section addToCart={addToCart} selectedFilter={selectedFilter} />
+        <Section selectedFilter={selectedFilter} />
       </div>
       <Footer />
     </>

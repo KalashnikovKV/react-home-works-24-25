@@ -4,24 +4,16 @@ import AuthorizedRoutes from "./AuthorizedRoutes";
 import UnauthorizedRoutes from "./UnauthorizedRoutes";
 import { useAuth } from "../hooks/useAuth";
 
-interface MainRouterProps {
-  cartItems?: any[];
-  removeFromCart?: (id: number) => void;
-  addToCart?: (product: any) => void;
-}
 
-const MainRouter: React.FC<MainRouterProps> = ({
-  cartItems,
-  removeFromCart,
-  addToCart,
-}) => {
+
+const MainRouter = ({ }) => {
   const { isLoggedIn } = useAuth();
   return (
     <BrowserRouter>
       {isLoggedIn ? (
-        <AuthorizedRoutes isLoggedIn={isLoggedIn}/>
+        <AuthorizedRoutes isLoggedIn={isLoggedIn} />
       ) : (
-        <UnauthorizedRoutes isLoggedIn={isLoggedIn}/>
+        <UnauthorizedRoutes isLoggedIn={isLoggedIn} />
       )}
     </BrowserRouter>
   );

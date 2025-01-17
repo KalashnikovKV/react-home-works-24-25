@@ -1,6 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   header,
   logo,
@@ -14,14 +12,14 @@ import {
   activeNavItemStyles,
 } from "./styles";
 import Button from "../ButtonComponent/Button";
+import { useSelector } from "react-redux";
+import { selectTotalItems } from "../../redux/reducers/cartReducer";
 
-interface HeaderProps {
-  toggleCart?: () => void;
-  cartItemCount?: number;
-}
-
-const Header: React.FC<HeaderProps> = ({ toggleCart, cartItemCount }) => {
-  const location = useLocation(); 
+const Header = () => {
+  const location = useLocation();
+  const totalItems = useSelector(selectTotalItems);
+  console.log(totalItems);
+  const navigate = useNavigate();
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -30,45 +28,57 @@ const Header: React.FC<HeaderProps> = ({ toggleCart, cartItemCount }) => {
     { name: "Login", path: "/login" },
   ];
 
+  const handleCartClick = () => {
+    navigate("/cart");
+  };
+
   return (
     <header style={header}>
       <div style={headerContainer}>
         <div style={logo}>
           <Link to="/">
-            <img style={logoIcon} src="./src/assets/icons/header/logo.png" alt="Logo" />
+            <img
+              style={logoIcon}
+              src="./src/assets/icons/header/logo.png"
+              alt="Logo"
+            />
           </Link>
         </div>
+
         <nav style={nav}>
           <ul style={navList}>
             {navItems.map((item) => (
               <li
                 key={item.name}
-                style={location.pathname === item.path ? activeNavItemStyles : navItemStyles}
+                style={
+                  location.pathname === item.path
+                    ? activeNavItemStyles
+                    : navItemStyles
+                }
               >
-                <Link to={item.path} style={{ textDecoration: "none", color: "inherit" }}>
+                <Link
+                  to={item.path}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
                   {item.name}
                 </Link>
               </li>
             ))}
           </ul>
         </nav>
+
         <div style={buttonContainer}>
           <Button
             text=""
-            onClick={()=>{}}
+            onClick={handleCartClick}
             style={headerButtonStyle}
             icon={<img src="./src/assets/icons/header/frame.png" alt="frame" />}
-            cartItemCount={cartItemCount}
+            cartItemCount={totalItems}
           />
         </div>
       </div>
     </header>
   );
-};
-
-Header.propTypes = {
-  toggleCart: PropTypes.func.isRequired,
-  cartItemCount: PropTypes.number.isRequired,
 };
 
 export default Header;

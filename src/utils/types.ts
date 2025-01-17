@@ -10,6 +10,5 @@ export interface Product {
 }
 
 export interface CartItem extends Product {
-  description: string;
   quantity: number;
 }

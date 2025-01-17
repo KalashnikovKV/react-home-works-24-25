@@ -20,7 +20,7 @@ const hCompany: React.CSSProperties = {
   color: "black",
 };
 
-const CompanyScreen: React.FC = () => {
+const CompanyScreen = () => {
   return (
     <>
       <Header />

@@ -7,27 +7,24 @@ import MenuScreen from "../screens/MenuScreen";
 
 interface UnauthorizedRoutesProps {
   isLoggedIn: boolean;
-  addToCart?: (product: any) => void;
 }
 
 const UnauthorizedRoutes: React.FC<UnauthorizedRoutesProps> = ({
   isLoggedIn,
-  addToCart,
 }) => {
   return (
     <Routes>
       <Route
         path="/login"
-        element={
-          <LoginScreen
-            isLoggedIn={isLoggedIn}
-            user={null}
-          />
-        }
+        element={<LoginScreen isLoggedIn={isLoggedIn} user={null} />}
       />
       <Route path="/" element={<HomeScreen />} />
       <Route path="/company" element={<CompanyScreen />} />
-      <Route path="/menu" element={<MenuScreen  />} />
+      <Route path="/menu" element={<MenuScreen />} />
+      <Route
+        path="/cart"
+        element={<LoginScreen isLoggedIn={isLoggedIn} user={null} />}
+      />
     </Routes>
   );
 };

@@ -1,20 +1,17 @@
 import React from "react";
 import { Routes, Route} from "react-router-dom";
 import MenuScreen from "../screens/MenuScreen";
-import Order from "../components/CartContainer/Order";
+import Order from "../screens/OrderScreen";
 import LoginScreen from "../screens/LoginScreen";
 import CompanyScreen from "../screens/CompanyScreen";
 import HomeScreen from "../screens/HomeScreen";
 
 interface AuthorizedRoutesProps {
   isLoggedIn: boolean;
-  removeFromCart?: (id: number) => void;
-  addToCart?: (product: any) => void;
 }
 
 const AuthorizedRoutes: React.FC<AuthorizedRoutesProps> = ({
   isLoggedIn,
-  removeFromCart,
 }) => {
 
   return (
@@ -31,7 +28,7 @@ const AuthorizedRoutes: React.FC<AuthorizedRoutesProps> = ({
       <Route path="/" element={<HomeScreen  />} />
       <Route path="/menu" element={<MenuScreen  />} />
       <Route path="/company" element={<CompanyScreen />} />
-      <Route path="/cart" element={<Order  removeFromCart={removeFromCart}/>} />
+      <Route path="/cart" element={<Order  />} />
     </Routes>
   );
 };

@@ -1,16 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface User {
-  id: string;
-  username: string;
-  password: string;
-}
-
-interface AuthState {
-  isAuthenticated: boolean;
-  user: User | null;
-  users: User[];
-}
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AuthState, User } from "../types";
 
 const initialState: AuthState = {
   isAuthenticated: false,
@@ -19,10 +8,13 @@ const initialState: AuthState = {
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {
-    register(state, action: PayloadAction<{ username: string; password: string }>) {
+    register(
+      state,
+      action: PayloadAction<{ username: string; password: string }>
+    ) {
       const newUser: User = {
         id: Date.now().toString(),
         username: action.payload.username,
@@ -30,16 +22,20 @@ const authSlice = createSlice({
       };
       state.users.push(newUser);
     },
-    login(state, action: PayloadAction<{ username: string; password: string }>) {
+    login(
+      state,
+      action: PayloadAction<{ username: string; password: string }>
+    ) {
       const foundUser = state.users.find(
         (user) =>
-          user.username === action.payload.username && user.password === action.payload.password
+          user.username === action.payload.username &&
+          user.password === action.payload.password
       );
       if (foundUser) {
         state.isAuthenticated = true;
         state.user = foundUser;
       } else {
-        throw new Error('Invalid username or password.');
+        throw new Error("Invalid username or password.");
       }
     },
     logout(state) {
