@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.light {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --button-color: #007bff;
+  --button-text-color: #ffffff;
+}
+
+.dark {
+  --background-color: #121212;
+  --text-color: #ffffff;
+  --button-color: #1f1f1f;
+  --button-text-color: #ffffff;
+}
+
+body.light,
+body.dark {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+button {
+  background-color: var(--button-color);
+  color: var(--button-text-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}

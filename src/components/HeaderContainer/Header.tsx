@@ -1,25 +1,29 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   header,
+  headerDark,
   logo,
   nav,
   navList,
   headerContainer,
   logoIcon,
   headerButtonStyle,
+  headerButtonDarkMode,
   buttonContainer,
   navItemStyles,
+  navItemStylesDarkMode,
   activeNavItemStyles,
 } from "./styles";
 import Button from "../ButtonComponent/Button";
 import { useSelector } from "react-redux";
 import { selectTotalItems } from "../../redux/reducers/cartReducer";
+import { useTheme } from "../../screens/Theme/ThemeContext";
 
 const Header = () => {
   const location = useLocation();
   const totalItems = useSelector(selectTotalItems);
-  console.log(totalItems);
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -33,14 +37,14 @@ const Header = () => {
   };
 
   return (
-    <header style={header}>
+    <header style={theme === "light" ? header : headerDark}>
       <div style={headerContainer}>
         <div style={logo}>
-          <Link to="/">
+          <Link to='/'>
             <img
               style={logoIcon}
-              src="./src/assets/icons/header/logo.png"
-              alt="Logo"
+              src='./src/assets/icons/header/logo.png'
+              alt='Logo'
             />
           </Link>
         </div>
@@ -51,9 +55,13 @@ const Header = () => {
               <li
                 key={item.name}
                 style={
-                  location.pathname === item.path
+                  theme === "light"
+                    ? location.pathname === item.path
+                      ? activeNavItemStyles
+                      : navItemStyles
+                    : location.pathname === item.path
                     ? activeNavItemStyles
-                    : navItemStyles
+                    : navItemStylesDarkMode
                 }
               >
                 <Link
@@ -69,13 +77,18 @@ const Header = () => {
 
         <div style={buttonContainer}>
           <Button
-            text=""
+            text=''
             onClick={handleCartClick}
             style={headerButtonStyle}
-            icon={<img src="./src/assets/icons/header/frame.png" alt="frame" />}
+            icon={<img src='./src/assets/icons/header/frame.png' alt='frame' />}
             cartItemCount={totalItems}
           />
         </div>
+        <Button
+          text={theme === "light" ? "Dark Mode" : "Light Mode"}
+          onClick={toggleTheme}
+          style={headerButtonDarkMode}
+        />
       </div>
     </header>
   );
