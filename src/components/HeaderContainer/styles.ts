@@ -1,3 +1,12 @@
+export const headerDark: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  backgroundColor: "#121212",
+  color: "white",
+  justifyContent: "center",
+  height: 100,
+};
+
 export const header: React.CSSProperties = {
   display: "flex",
   alignItems: "center",
@@ -62,6 +71,16 @@ export const headerButtonStyle: React.CSSProperties = {
   borderRadius: "6px",
 };
 
+export const headerButtonDarkMode: React.CSSProperties = {
+  backgroundColor: "#35B8BE",
+  width: 55,
+  height: 55,
+  padding: 0,
+  borderRadius: "6px",
+  marginLeft: 10,
+  color: "white",
+};
+
 export const buttonContainer: React.CSSProperties = {
   width: 55,
   height: 55,
@@ -72,6 +91,13 @@ export const cart: React.CSSProperties = {};
 export const navItemStyles: React.CSSProperties = {
   cursor: "pointer",
   color: "#222",
+  padding: "10px 15px",
+  textDecoration: "none",
+};
+
+export const navItemStylesDarkMode: React.CSSProperties = {
+  cursor: "pointer",
+  color: "white",
   padding: "10px 15px",
   textDecoration: "none",
 };
