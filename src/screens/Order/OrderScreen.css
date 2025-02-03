@@ -1,0 +1,83 @@
+/* Container Styles */
+.order-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  color: black;
+}
+
+.order-item {
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  width: 100%;
+  text-align: left;
+}
+
+.order-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.order-button {
+  margin-top: 19px;
+  margin-bottom: 234px;
+  margin-left: 8px;
+  width: 147px;
+  height: 45px;
+  border-radius: 6px;
+  background: #35b8be;
+  color: #fff;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.36px;
+  border: none;
+  cursor: pointer;
+}
+
+.order-button:hover {
+  background: #2fa1a6;
+}
+
+.order-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  height: 45px;
+  margin-bottom: 25px;
+}
+
+.order-input {
+  width: 430px;
+  height: 45px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #000;
+  text-align: left;
+  padding-left: 15px;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 27px;
+}
+
+.order-title {
+  margin-top: 154px;
+  margin-bottom: 46px;
+  color: #35b8be;
+  text-align: center;
+  font-family: Inter, sans-serif;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 55px;
+  letter-spacing: 1.65px;
+}

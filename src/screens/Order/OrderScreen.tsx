@@ -1,11 +1,11 @@
-import { useState } from "react";
-import ProductCard from "../components/ProductCardContainer/ProductCard";
-import Button from "../components/ButtonComponent/Button";
+import React, { useState } from "react";
+import ProductCard from "../../components/ProductCardContainer/ProductCard";
+import Button from "../../components/ButtonComponent/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store";
-import { removeFromCart } from "../redux/reducers/cartReducer";
-import Footer from "../components/FooterContainer/Footer";
-import Header from "../components/HeaderContainer/Header";
+import { RootState } from "../../redux/store";
+import { removeFromCart } from "../../redux/reducers/cartReducer";
+import Footer from "../../components/FooterContainer/Footer";
+import Header from "../../components/HeaderContainer/Header";
 
 export const orderContainerStyles: React.CSSProperties = {
   display: "flex",
@@ -93,7 +93,7 @@ export const h2Order: React.CSSProperties = {
   letterSpacing: "1.65px",
 };
 
-const Order = () => {
+const OrderScreen = () => {
   const [street, setStreet] = useState("");
   const [house, setHouse] = useState("");
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -130,7 +130,7 @@ const Order = () => {
               <div style={divOrderInput}>
                 <label>Street</label>
                 <input
-                  type="text"
+                  type='text'
                   value={street}
                   onChange={(e) => setStreet(e.target.value)}
                   style={inputOrderInput}
@@ -139,7 +139,7 @@ const Order = () => {
               <div style={divOrderInput}>
                 <label>House</label>
                 <input
-                  type="text"
+                  type='text'
                   value={house}
                   onChange={(e) => setHouse(e.target.value)}
                   style={inputOrderInput}
@@ -147,7 +147,11 @@ const Order = () => {
               </div>
             </div>
             <div style={buttonContainerStyles}>
-              <Button text="Order" onClick={handleOrder} style={orderButtonStyles} />
+              <Button
+                text='Order'
+                onClick={handleOrder}
+                style={orderButtonStyles}
+              />
             </div>
           </div>
         )}
@@ -157,4 +161,80 @@ const Order = () => {
   );
 };
 
-export default Order;
+export default OrderScreen;
+
+// import React, { useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { RootState } from "../../redux/store";
+// import { removeFromCart } from "../../redux/reducers/cartReducer";
+// import ProductCard from "../../components/ProductCardContainer/ProductCard";
+// import Button from "../../components/ButtonComponent/Button";
+// import Header from "../../components/HeaderContainer/Header";
+// import Footer from "../../components/FooterContainer/Footer";
+// import "./OrderScreen.css"; // Import the CSS file
+
+// const Order = () => {
+//   const [street, setStreet] = useState("");
+//   const [house, setHouse] = useState("");
+//   const cartItems = useSelector((state: RootState) => state.cart.items);
+
+//   const dispatch = useDispatch();
+
+//   const handleOrder = () => {
+//     alert(`Order placed! Address: ${street}, ${house}`);
+//   };
+
+//   const handleRemoveFromCart = (id: number) => {
+//     dispatch(removeFromCart(id));
+//   };
+
+//   return (
+//     <>
+//       <Header />
+//       <div className='order-container'>
+//         <h2 className='order-title'>Finish your order</h2>
+//         {cartItems.length === 0 ? (
+//           <p>Your cart is empty</p>
+//         ) : (
+//           <div>
+//             {cartItems.map((item) => (
+//               <div className='order-item' key={item.id}>
+//                 <ProductCard
+//                   product={item}
+//                   isInCart={true}
+//                   onRemove={() => handleRemoveFromCart(item.id)}
+//                 />
+//               </div>
+//             ))}
+//             <div className='order-input-container'>
+//               <label>Street</label>
+//               <input
+//                 type='text'
+//                 value={street}
+//                 onChange={(e) => setStreet(e.target.value)}
+//                 className='order-input'
+//               />
+//             </div>
+//             <div className='order-input-container'>
+//               <label>House</label>
+//               <input
+//                 type='text'
+//                 value={house}
+//                 onChange={(e) => setHouse(e.target.value)}
+//                 className='order-input'
+//               />
+//             </div>
+//             <div className='order-button-container'>
+//               <button className='order-button' onClick={handleOrder}>
+//                 Order
+//               </button>
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//       <Footer />
+//     </>
+//   );
+// };
+
+// export default Order;
